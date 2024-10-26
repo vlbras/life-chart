@@ -25,7 +25,9 @@ export class SignInCommandHandler implements ICommandHandler<SignInCommand, Toke
     const { id: userId, password: hashedPassword, role } = await this.userIntegrationService.findOne({ email });
 
     if (!(await compare(password, hashedPassword))) {
-      throw new BadRequestException('Invalid credentials');
+      const message = 'Invalid credentials';
+      this.logger.debug(`User is not signed in, ${message} email: ${email}`);
+      throw new BadRequestException(message);
     }
 
     const tokens = await this.jwtTokenService.generate({ userId, role });

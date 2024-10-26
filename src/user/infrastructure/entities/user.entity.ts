@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { hashSync } from 'bcryptjs';
 
-import { AbstractEntity, UserRoles } from '#common';
+import { AbstractEntity, UserRoles } from '../../../common';
 
 @Schema({
   collection: 'users',
@@ -24,7 +24,7 @@ export class UserEntity extends AbstractEntity {
   @Prop({
     type: String,
     enum: UserRoles,
-    required: true,
+    default: UserRoles.CUSTOMER,
   })
   public role: UserRoles;
 }

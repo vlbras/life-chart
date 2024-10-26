@@ -13,6 +13,9 @@ cp .env.example .env
 
 # run db
 $ docker-compose up -d
+
+# run seed
+$ pnpm seed:run
 ```
 
 ## Running the app
