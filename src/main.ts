@@ -20,7 +20,7 @@ async function bootstrap(): Promise<void> {
 
   const { AppModule } = await import('./app.module');
 
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { cors: true });
   const config = app.get<ConfigContainer<AppOptions>>(getConfigContainerToken(AppOptions));
 
   const documentOptions = new DocumentBuilder().setTitle('Life Chart API').setDescription('API description').build();
