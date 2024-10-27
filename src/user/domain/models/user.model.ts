@@ -1,10 +1,7 @@
-import { UserRoles } from '#common';
+import { AbstractModel, UserRoles } from '#common';
 
-export type User = {
-  id: string;
+export type User = AbstractModel & {
   email: string;
   password: string;
   role: UserRoles;
-  createdAt: string;
-  updatedAt: string;
 };

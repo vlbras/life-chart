@@ -20,6 +20,7 @@
       "#common": ["src/common"],
       "#user/*": ["src/user/*"],
       "#auth/*": ["src/auth/*"],
+      "#task/*": ["src/task/*"],
     }
   }
 }

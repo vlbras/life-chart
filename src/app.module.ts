@@ -8,6 +8,7 @@ import { AppOptions } from './app.options';
 
 import { AuthModule } from '#auth/auth.module';
 import { AccessTokenGuard } from '#auth/presentation/guards/access-token.guard';
+import { TaskModule } from '#task/task.module';
 import { UserModule } from '#user/user.module';
 
 @Module({
@@ -16,6 +17,7 @@ import { UserModule } from '#user/user.module';
     MongooseModule.forRoot(Config.getValues(AppOptions).mongoUri),
     UserModule,
     AuthModule,
+    TaskModule,
   ],
   providers: [
     {
