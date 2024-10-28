@@ -1,11 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-import { UserRoles } from '#common';
+import { BaseSwaggerModel, UserRoles } from '#common';
 
-export class UserModel {
-  @ApiProperty()
-  public readonly id: string;
-
+export class UserModel extends BaseSwaggerModel {
   @ApiProperty()
   public readonly email: string;
 

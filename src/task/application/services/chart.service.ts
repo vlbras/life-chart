@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
-import { ChartRepository } from '#task/infrastructure/repositories/chart.repository';
+import { ChartRepository } from '#task/infrastructure/repositories';
 
 @Injectable()
 export class ChartService {
