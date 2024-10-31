@@ -1,11 +1,9 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
+import { BaseSwaggerModel } from '#common';
 import { TaskPriorities, TaskTypes } from '#task/domain/enums';
 
-export class TaskModel {
-  @ApiProperty()
-  public readonly id: string;
-
+export class TaskModel extends BaseSwaggerModel {
   @ApiProperty()
   public readonly title: string;
 
@@ -24,12 +22,9 @@ export class TaskModel {
   @ApiPropertyOptional()
   public readonly isCompleted?: boolean;
 
+  @ApiProperty({ default: false })
+  public readonly isRegular: boolean;
+
   @ApiProperty()
   public readonly userId: string;
-
-  @ApiProperty()
-  public readonly createdAt: string;
-
-  @ApiProperty()
-  public readonly updatedAt: string;
 }

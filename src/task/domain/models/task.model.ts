@@ -9,5 +9,6 @@ export type Task = AbstractModel & {
   priority: TaskPriorities;
   type: TaskTypes;
   isCompleted?: boolean;
+  isRegular: boolean;
   userId: string;
 };

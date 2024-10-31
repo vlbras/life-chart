@@ -26,13 +26,14 @@ export class TaskEntity extends AbstractEntity {
   @Prop({ type: Boolean })
   public isCompleted?: boolean;
 
+  @Prop({ type: Boolean, default: false })
+  public isRegular: boolean;
+
   @Prop({ required: true, index: true })
   public userId: string;
 
   @Prop({ type: Date, default: Date.now, index: true })
   public createdAt: Date;
-
-  // TODO: isRegular property, default 'false'
 }
 
 export const TaskSchema = SchemaFactory.createForClass(TaskEntity);

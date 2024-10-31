@@ -12,6 +12,7 @@ export class TaskMapper {
       priority: entity.priority,
       type: entity.type,
       isCompleted: entity.isCompleted,
+      isRegular: entity.isRegular,
       userId: entity.userId,
       createdAt: entity.createdAt.toISOString(),
       updatedAt: entity.updatedAt.toISOString(),

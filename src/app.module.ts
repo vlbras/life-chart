@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { APP_GUARD } from '@nestjs/core';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ScheduleModule } from '@nestjs/schedule';
 import { Config } from '@unifig/core';
 import { ConfigModule } from '@unifig/nest';
 
@@ -15,6 +16,7 @@ import { UserModule } from '#user/user.module';
   imports: [
     ConfigModule.forRoot({ default: AppOptions }),
     MongooseModule.forRoot(Config.getValues(AppOptions).mongoUri),
+    ScheduleModule.forRoot(),
     UserModule,
     AuthModule,
     TaskModule,
