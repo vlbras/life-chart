@@ -9,7 +9,7 @@ $ pnpm install
 
 ```bash
 # set up .env
-cp .env.example .env
+$ cp .env.example .env
 
 # run db
 $ docker-compose up -d
