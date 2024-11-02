@@ -1,9 +1,10 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Query } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 
 import { GetChartDto } from './dto';
 import { BarModel } from './models';
 
+import { CurrentUserId } from '#common';
 import { ChartService } from '#task/application/services/chart.service';
 
 @ApiTags('chart')
@@ -14,10 +15,7 @@ export class ChartController {
   @ApiOperation({ summary: 'Get chart' })
   @ApiOkResponse({ type: BarModel, isArray: true })
   @Get()
-  public async getChart(dto: GetChartDto): Promise<BarModel[]> {
-    // TODO: call ChartService
-    // map timeRange to certain date (date-fns library)
-    // pass created date to chartRepository.getChart()
-    return [];
+  public async getChart(@CurrentUserId() userId: string, @Query() dto: GetChartDto): Promise<BarModel[]> {
+    return this.chartService.getChart(userId, dto);
   }
 }

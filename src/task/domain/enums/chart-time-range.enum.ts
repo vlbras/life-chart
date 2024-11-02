@@ -1,7 +1,7 @@
 export enum ChartTimeRange {
   '7_DAYS' = '7 days',
-  LAST_WEEK = 'last week',
+  THIS_WEEK = 'this week',
   '30_DAYS' = '30 days',
-  LAST_MONTH = 'last month',
+  THIS_MONTH = 'this month',
   MAX = 'max',
 }

@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Param, Patch, Post } from '@nestjs/common';
 import { ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { IsObjectIdPipe } from 'nestjs-object-id';
 
 import { CreateUserDto, UpdateUserDto } from './dto';
 
@@ -24,7 +25,10 @@ export class UserCommandController {
   @ApiOperation({ summary: 'Admin - Update user by id' })
   @ApiOkResponse({ type: ActionResponse })
   @Patch(':id')
-  public async updateOne(@Param('id') id: string, @Body() data: UpdateUserDto): Promise<ActionResponse> {
+  public async updateOne(
+    @Param('id', IsObjectIdPipe) id: string,
+    @Body() data: UpdateUserDto,
+  ): Promise<ActionResponse> {
     const command = new UpdateUserCommand({ id, ...data });
     const user = await this.userFacade.updateOne(command);
     return { id: user.id };
@@ -33,7 +37,7 @@ export class UserCommandController {
   @ApiOperation({ summary: 'Admin - Delete user by id' })
   @ApiOkResponse()
   @Delete(':id')
-  public async deleteOne(@Param('id') id: string): Promise<void> {
+  public async deleteOne(@Param('id', IsObjectIdPipe) id: string): Promise<void> {
     const command = new DeleteUserCommand({ id });
     await this.userFacade.deleteOne(command);
   }

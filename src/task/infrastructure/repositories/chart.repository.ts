@@ -15,11 +15,10 @@ export class ChartRepository {
     private readonly taskEntity: Model<TaskEntity>,
   ) {}
 
-  public async getChart(userId: string, startDate?: Date): Promise<Chart> {
+  public async getChart(userId: string, startDate: Date): Promise<Chart> {
     const filter: FilterQuery<TaskEntity> = {};
-    if (startDate) {
-      filter.createdAt = { $gt: startDate };
-    }
+
+    filter.createdAt = { $gt: startDate };
     filter.isCompleted = { $exists: true };
     filter.userId = userId;
 

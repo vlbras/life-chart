@@ -1,5 +1,6 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { IsObjectIdPipe } from 'nestjs-object-id';
 
 import { UserModel } from './models';
 
@@ -23,7 +24,7 @@ export class UserQueryController {
   @ApiOperation({ summary: 'Admin - Get user by id' })
   @ApiOkResponse({ type: UserModel })
   @Get(':id')
-  public findOne(@Param('id') id: string): Promise<UserModel> {
+  public findOne(@Param('id', IsObjectIdPipe) id: string): Promise<UserModel> {
     const query = new FindUserQuery({ id });
     return this.userFacade.findOne(query);
   }
