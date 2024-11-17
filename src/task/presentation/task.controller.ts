@@ -51,7 +51,7 @@ export class TaskController {
     return this.taskService.deleteOne(id);
   }
 
-  @ApiOperation({ summary: 'Change task status' })
+  @ApiOperation({ summary: 'Change task status', description: `Available for today's tasks only` })
   @ApiOkResponse({ type: ActionResponse })
   @Post('change-status/:id')
   public async changeStatus(
