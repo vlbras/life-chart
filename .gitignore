@@ -1,5 +1,8 @@
 # common
 .env
+.env.prod
+.config
+pnpm-lock.yaml
 
 # compiled output
 /dist
