@@ -78,22 +78,6 @@ export abstract class AbstractCommandRepository<
     }
   }
 
-  public async deleteOne(filterQuery: FilterQuery<TEntity>): Promise<void> {
-    if (Object.keys(filterQuery).length === 0) {
-      const message = `Filter query is required to delete ${this.entity.modelName}`;
-      this.logger.error(`DeleteOne: ${message}`);
-      throw new BadRequestException(message);
-    }
-
-    const { deletedCount } = await this.entity.deleteOne(filterQuery);
-
-    if (!deletedCount) {
-      const message = `${this.entity.modelName} not found`;
-      this.logger.error(`DeleteOne: ${message}, filter: ${JSON.stringify(filterQuery)}`);
-      throw new NotFoundException(message);
-    }
-  }
-
   public async findOneAndDelete(filterQuery: FilterQuery<TEntity>): Promise<TModel> {
     if (Object.keys(filterQuery).length === 0) {
       const message = `Filter query is required to delete ${this.entity.modelName}`;

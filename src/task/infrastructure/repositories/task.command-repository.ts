@@ -61,6 +61,11 @@ export class TaskCommandRepository {
       throw new NotFoundException('Task not found');
     }
   }
+
+  public async deleteMany(input: FilterTaskInput): Promise<number> {
+    const filter = TaskQueryBuilder.filterQueryBuilder(input);
+    return (await this.taskEntity.deleteMany(filter)).deletedCount;
+  }
 }
 
 type CreateTaskInput = {

@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { APP_GUARD } from '@nestjs/core';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ScheduleModule } from '@nestjs/schedule';
 import { Config } from '@unifig/core';
@@ -17,6 +18,7 @@ import { UserModule } from '#user/user.module';
     ConfigModule.forRoot({ default: AppOptions }),
     MongooseModule.forRoot(Config.getValues(AppOptions).mongoUri),
     ScheduleModule.forRoot(),
+    EventEmitterModule.forRoot(),
     UserModule,
     AuthModule,
     TaskModule,

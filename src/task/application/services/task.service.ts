@@ -1,10 +1,12 @@
 import { Injectable } from '@nestjs/common';
+import { OnEvent } from '@nestjs/event-emitter';
 
 import { ActionResponse, getMaxDate, getStartOfDay } from '#common';
 import { TasksTimeRange } from '#task/domain/enums';
 import { Task } from '#task/domain/models';
 import { TaskCommandRepository, TaskQueryRepository } from '#task/infrastructure/repositories';
 import { ChangeTaskStatusDto, CreateTaskDto, GetTasksDto, UpdateTaskDto } from '#task/presentation/dto';
+import { UserDeletedEvent, userDeletedNS } from '#user/integration/events';
 
 @Injectable()
 export class TaskService {
@@ -49,5 +51,10 @@ export class TaskService {
     );
 
     return { id: task.id };
+  }
+
+  @OnEvent(userDeletedNS, { async: true })
+  public deleteMany(data: UserDeletedEvent): void {
+    this.commandRepository.deleteMany(data);
   }
 }
