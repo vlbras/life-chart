@@ -1,5 +1,5 @@
 import { Body, Controller, HttpCode, Post, UseGuards } from '@nestjs/common';
-import { ApiCreatedResponse, ApiHeader, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 
 import { RefreshToken } from './decorators/refresh-toke.decorator';
 import { SignInDto, SignUpDto } from './dto';
@@ -39,7 +39,7 @@ export class AuthController {
   }
 
   @ApiOperation({ summary: 'Sign Out' })
-  @ApiHeader({ name: 'Refresh Token' })
+  @ApiBearerAuth('Refresh Token')
   @UseGuards(RefreshTokenGuard)
   @Post('sign-out')
   @HttpCode(200)
@@ -49,7 +49,7 @@ export class AuthController {
   }
 
   @ApiOperation({ summary: 'Refresh Tokens' })
-  @ApiHeader({ name: 'Refresh Token' })
+  @ApiBearerAuth('Refresh Token')
   @ApiOkResponse({ type: TokensModel })
   @UseGuards(RefreshTokenGuard)
   @Post('refresh-tokens')

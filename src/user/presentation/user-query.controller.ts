@@ -1,5 +1,5 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { IsObjectIdPipe } from 'nestjs-object-id';
 
 import { UserModel } from './models';
@@ -8,6 +8,7 @@ import { AuthRoles, UserRoles } from '#common';
 import { FindUserQuery, FindUsersQuery, UserQueryFacade } from '#user/application/queries';
 
 @ApiTags('user')
+@ApiBearerAuth()
 @Controller('user')
 @AuthRoles(UserRoles.ADMIN)
 export class UserQueryController {

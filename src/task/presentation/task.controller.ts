@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
-import { ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { IsObjectIdPipe } from 'nestjs-object-id';
 
 import { ChangeTaskStatusDto, CreateTaskDto, GetTasksDto, UpdateTaskDto } from './dto';
@@ -9,6 +9,7 @@ import { ActionResponse, CurrentUserId } from '#common';
 import { TaskService } from '#task/application/services/task.service';
 
 @ApiTags('task')
+@ApiBearerAuth()
 @Controller('task')
 export class TaskController {
   public constructor(public readonly taskService: TaskService) {}

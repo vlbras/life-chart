@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Param, Patch, Post } from '@nestjs/common';
-import { ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { IsObjectIdPipe } from 'nestjs-object-id';
 
 import { CreateUserDto, UpdateUserDto } from './dto';
@@ -8,6 +8,7 @@ import { AuthRoles, UserRoles, ActionResponse } from '#common';
 import { CreateUserCommand, DeleteUserCommand, UpdateUserCommand, UserCommandFacade } from '#user/application/commands';
 
 @ApiTags('user')
+@ApiBearerAuth()
 @Controller('user')
 @AuthRoles(UserRoles.ADMIN)
 export class UserCommandController {
