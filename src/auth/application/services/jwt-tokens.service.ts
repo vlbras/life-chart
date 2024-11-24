@@ -6,9 +6,9 @@ import { InjectConfig } from '@unifig/nest';
 import { Types } from 'mongoose';
 
 import { RefreshTokenGeneratedEvent } from '#auth/domain/events';
-import { AccessTokenPayload, RefreshTokenPayload } from '#auth/domain/interfaces';
 import { Tokens } from '#auth/domain/models';
 import { JwtOptions } from '#auth/jwt.options';
+import { AccessTokenPayload, RefreshTokenPayload } from '#common';
 
 @Injectable()
 export class JwtTokensService {

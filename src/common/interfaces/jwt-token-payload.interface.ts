@@ -1,4 +1,4 @@
-import { UserRoles } from '#common';
+import { UserRoles } from '../enums';
 
 export interface RefreshTokenPayload {
   id: string;

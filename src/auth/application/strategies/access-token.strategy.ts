@@ -5,8 +5,8 @@ import { InjectConfig } from '@unifig/nest';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 
 import { JwtTokenTypes } from '#auth/domain/enums';
-import { AccessTokenPayload } from '#auth/domain/interfaces';
 import { JwtOptions } from '#auth/jwt.options';
+import { AccessTokenPayload } from '#common';
 
 @Injectable()
 export class AccessTokenStrategy extends PassportStrategy(Strategy, JwtTokenTypes.ACCESS) {

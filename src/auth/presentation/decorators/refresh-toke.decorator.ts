@@ -1,6 +1,6 @@
 import { ExecutionContext, createParamDecorator } from '@nestjs/common';
 
-import { RefreshTokenPayload } from '#auth/domain/interfaces';
+import { RefreshTokenPayload } from '#common';
 
 export const RefreshToken = createParamDecorator(
   (data: keyof RefreshTokenPayload | undefined, context: ExecutionContext): RefreshTokenPayload | string => {

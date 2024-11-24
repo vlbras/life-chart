@@ -1,6 +1,6 @@
 import { ExecutionContext, createParamDecorator } from '@nestjs/common';
 
-import { AccessTokenPayload } from '#auth/domain/interfaces';
+import { AccessTokenPayload } from '../interfaces';
 
 export const CurrentUser = createParamDecorator(
   (data: keyof AccessTokenPayload | undefined, context: ExecutionContext): AccessTokenPayload | string => {

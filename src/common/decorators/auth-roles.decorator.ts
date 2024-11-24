@@ -2,8 +2,7 @@ import { applyDecorators, CanActivate, ExecutionContext, Injectable, SetMetadata
 import { Reflector } from '@nestjs/core';
 
 import { UserRoles } from '../enums';
-
-import { AccessTokenPayload } from '#auth/domain/interfaces';
+import { AccessTokenPayload } from '../interfaces';
 
 export function AuthRoles(...roles: UserRoles[]): any {
   return applyDecorators(Roles(...roles), UseGuards(RolesGuard));

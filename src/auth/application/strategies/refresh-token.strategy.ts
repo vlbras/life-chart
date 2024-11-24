@@ -5,8 +5,8 @@ import { InjectConfig } from '@unifig/nest';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 
 import { JwtTokenTypes } from '#auth/domain/enums';
-import { RefreshTokenPayload } from '#auth/domain/interfaces';
 import { JwtOptions } from '#auth/jwt.options';
+import { RefreshTokenPayload } from '#common';
 
 @Injectable()
 export class RefreshTokenStrategy extends PassportStrategy(Strategy, JwtTokenTypes.REFRESH) {
