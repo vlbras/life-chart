@@ -26,7 +26,18 @@ async function bootstrap(): Promise<void> {
 
   app.useGlobalPipes(new ValidationPipe());
 
-  const documentOptions = new DocumentBuilder().setTitle('Life Chart API').setDescription('API description').build();
+  const documentOptions = new DocumentBuilder()
+    .setTitle('Life Chart API')
+    .setDescription('API description')
+    .addBearerAuth({
+      type: 'http',
+      scheme: 'Bearer',
+      description: 'Enter access token here',
+      bearerFormat: 'Bearer ${token}',
+      in: 'header',
+      name: 'Authorization',
+    })
+    .build();
   const document = SwaggerModule.createDocument(app, documentOptions);
   SwaggerModule.setup('api', app, document);
 

@@ -33,6 +33,6 @@ $ pnpm run start:prod
 
 ## Documentation
 ```bash
-# defaulf value for PORT is 3000
+# default value for PORT is 3000
 $ http://localhost:3000/api/
 ```
