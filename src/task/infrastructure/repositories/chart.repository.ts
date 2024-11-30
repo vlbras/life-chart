@@ -5,7 +5,6 @@ import { FilterQuery, Model } from 'mongoose';
 
 import { TaskEntity } from '../entities/task.entity';
 
-import { TaskTypes } from '#task/domain/enums';
 import { Bar, Chart } from '#task/domain/models';
 
 @Injectable()
@@ -45,20 +44,16 @@ export class ChartRepository {
         dailyTotals[dateKey] = [0, 0];
       }
 
-      if (task.type === TaskTypes.POSITIVE) {
-        dailyTotals[dateKey][1] += points;
-      } else if (task.type === TaskTypes.NEGATIVE) {
-        dailyTotals[dateKey][1] -= points;
-      }
+      dailyTotals[dateKey][1] += points;
+    }
 
-      if (!chart.length || chart[chart.length - 1].date !== dateKey) {
-        const bar: Bar = {
-          position: [previousY1, previousY1 + dailyTotals[dateKey][1]],
-          date: dateKey,
-        };
-        chart.push(bar);
-        previousY1 += dailyTotals[dateKey][1];
-      }
+    for (const [date, [_, totalPoints]] of Object.entries(dailyTotals)) {
+      const bar: Bar = {
+        position: [previousY1, previousY1 + totalPoints],
+        date,
+      };
+      chart.push(bar);
+      previousY1 += totalPoints;
     }
 
     return chart;
